@@ -8,6 +8,11 @@
   - [Common JS Module System](#common-js-module-system)
   - [Process Module](#process-module)
   - [Path Module](#path-module)
+- [Node installation](#node-installation)
+- [Compiled vs Interpreted Language](#compiled-vs-interpreted-language)
+  - [Compiled Language](#compiled-language)
+  - [Interpreted Language](#interpreted-language)
+  - [Thread Pool](#thread-pool)
 
 ---
 
@@ -147,3 +152,53 @@ console.log(path.normalize("./app//src//util/.."));
 console.log(path.join("/app", "src", "util", "..", "/index.js"));
 // prints  /app/src/index.js
 ```
+
+---
+
+## Node installation
+
+```bash
+$ npm i module-name # install module to dependencies
+$ npm i --save-dev module-name # install to dev dependencies (only for development and not for production)
+$ npm i --save-dev module-name@1.19 # install a specific version (1.19 here) of module
+```
+
+- `*` means that you'll accept all updates
+- `^` means that you'll only accept minor releases
+- `~` means that you'll only accept patch releases
+- `>, >=, <=, <` are also valid for saying you'll accept versions greater/less/equal to the listed version
+- `||` allows you to combine instructions "prettier": "2.2.1 || >2.2.1 < 3.0.0" which says use prettier greater than 2.2.1 and less than version 3.0.0.
+
+- `package-lock.json` contains all of the information for the dependencies of the modules you have installed.
+- It is best practice to add `package-lock.json` as well as `./node_modules` to your `.gitignore` file
+
+---
+
+## Compiled vs Interpreted Language
+
+![compiled](./img/Compiled%20Language.png)
+
+### Compiled Language
+
+- Language is written and compiled to machine code inside of an application
+- Errors are detected during compiling
+- The code won’t compile until it’s error-free
+- Examples: C, C++, Erlang, Go
+
+### Interpreted Language
+
+- Errors found when the code is run
+- The interpreter translates and runs code one statement at a time
+- Interpreted code runs more slowly
+
+> Node.js Is an Interpreter
+
+### Thread Pool
+
+`Libuv Library` : A library written in `C` that provides **multithreading** to Node.js and allows for heavy processing.
+
+![libuv](./img/libuv.jpg)
+
+- Libuv takes advantage of the operating system's asynchronous interfaces before engaging the thread pool
+- The thread pool is engaged for events that require more processing power including compression and encryption tasks
+- The default thread pool includes `4` threads
