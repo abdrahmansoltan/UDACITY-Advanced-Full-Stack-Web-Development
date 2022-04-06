@@ -1,0 +1,17 @@
+{
+  "name": "exercise-3-build-a-typescript-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
+}
