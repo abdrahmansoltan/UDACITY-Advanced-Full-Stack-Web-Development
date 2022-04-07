@@ -11,6 +11,8 @@
   - [Type Aliases](#type-aliases)
   - [Classes](#classes)
     - [Access Modifiers](#access-modifiers)
+- [Generics](#generics)
+- [Promises](#promises)
 
 ---
 
@@ -231,3 +233,40 @@ myStudent.studentId = 1235; // TypeScript Error: Property 'studentId' is private
 console.log(myStudent.id()); // prints 1235
 ```
 
+---
+
+## Generics
+
+A generic is a way to write a function that is reusable across different types.
+
+- why not just use `any`?
+  - `any` allows for any type to go in, and any type to come out.
+  - Using a `generic` means a number goes in and a number comes out or a string goes in and a string comes out.
+  - `Generics` introduce the `Type Variable`
+    - Rather than being a variable that accepts values, it's a variable that accepts types and is denoted with angle brackets myFunc`<T>`
+
+```js
+// Typed Function
+const getItem = (arr: number[]): number => {
+  return arr[1];
+};
+
+// Generic Function
+const getItem = <T>(arr: T[]): T => {
+  return arr[1];
+};
+```
+
+In the first function, we have a function that takes in a number array and outputs the second number of the array. But what if we don't want to work with numbers? What if we want to work with strings? Well, we would need to create a second function. Or, we can use a generic, and whatever type we use when we call the function will translate to its return as well.
+
+---
+
+## Promises
+
+- Promises in TypeScript take advantage of `generics`. This means we can explicitly state what type of Promise should be returned.
+
+```js
+// this async fun has a promise but doesn't return something
+const myFunc = async ():Promise<void> => { // do stuff };
+
+```
