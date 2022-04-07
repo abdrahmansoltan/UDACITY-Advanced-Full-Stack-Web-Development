@@ -1,0 +1,16 @@
+{
+  "name": "typescript-exercise",
+  "version": "1.0.0",
+  "description": "TypeScript Exercise",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "author": "Udacity",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^14.14.6",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  }
+}
