@@ -1,121 +1,140 @@
 // Import readline module for getting input from console
 // Find more here: https://nodejs.org/api/readline.html#readline_readline
-const readline = require('readline');
+import readline from "readline";
 
 // define question/output interface
 const rl = readline.createInterface({
   // readable stream
   input: process.stdin,
   // writeable stream
-  output: process.stdout
+  output: process.stdout,
 });
 
 // Create questions for STDIN Input from console.
-const menuQ = () => {
+const menuQ = (): Promise<unknown> => {
   return new Promise((resolve, reject) => {
     // (readable, writeable from readline interface)
-    rl.question('Your choice: ', (answer) => {
+    rl.question("Your choice: ", (answer: unknown): void => {
       resolve(answer);
     });
   });
 };
 
-const milkQ = () => {
+const milkQ = (): Promise<unknown> => {
   return new Promise((resolve, reject) => {
-    rl.question('How many cups of milk to add? ', (answer) => {
-      resolve(answer);
-    });
+    try {
+      rl.question("How many cups of milk to add? ", (answer: unknown): void => {
+        resolve(answer);
+      });
+    } catch (error) {
+      reject();
+    }
   });
 };
 
-const espressoQ = () => {
+const espressoQ = (): Promise<unknown> => {
   return new Promise((resolve, reject) => {
-    rl.question('How many shots of espresso to add? ', (answer) => {
-      resolve(answer);
-    });
+    try {
+      rl.question(
+        "How many shots of espresso to add? ",
+        (answer: unknown): void => {
+          resolve(answer);
+        }
+      );
+    } catch (error) {
+      reject();
+    }
   });
 };
 
-const peppermintQ = () => {
+const peppermintQ = (): Promise<unknown> => {
   return new Promise((resolve, reject) => {
-    rl.question('How many shots of peppermint to add? ', (answer) => {
-      resolve(answer);
-    });
+    try {
+      rl.question(
+        "How many shots of peppermint to add? ",
+        (answer: unknown): void => {
+          resolve(answer);
+        }
+      );
+    } catch (error) {
+      reject();
+    }
   });
 };
 
 // Create parent class Mocha
 class Mocha {
-  milk;
-  shot;
-  chocolateType;
+  milk: number;
+  shot: number;
+  chocolateType: string;
 
   constructor() {
     this.milk = 1;
     this.shot = 1;
-    this.chocolateType = 'dark';
+    this.chocolateType = "dark";
   }
   // list the ingredients of the mocha
-  prepare() {
-    console.log('Your', this.chocolateType, ' Chocolate Mocha Ingredients:');
-    console.log(this.chocolateType, ' chocolate');
-    console.log('Cups of milk: ', this.milk);
-    console.log('Cups of espresso: ', this.shot, '\n\n');
+  prepare(): void {
+    console.log("Your", this.chocolateType, " Chocolate Mocha Ingredients:");
+    console.log(this.chocolateType, " chocolate");
+    console.log("Cups of milk: ", this.milk);
+    console.log("Cups of espresso: ", this.shot, "\n\n");
   }
 }
 
 // inherits from Mocha
 class WhiteChocolateMocha extends Mocha {
-  chocolateType = 'White';
+  chocolateType = "White";
 }
 // inherits from Mocha
 class DarkChocolateMocha extends Mocha {
-  chocolateType = 'Dark';
+  chocolateType = "Dark";
 }
 // inherits from Mocha
 class PeppermintMocha extends Mocha {
   // add peppermint property
-  peppermintSyrup;
+  peppermintSyrup: number;
   constructor() {
     // include super to pull in parent constructor
     super();
     this.peppermintSyrup = 1;
   }
   // Overrides Mocha prepare with additional statements
-  prepare() {
-    console.log('Your Peppermint Mocha Ingredients:');
-    console.log('Dark chocolate');
-    console.log('Cups of milk: ', this.milk);
-    console.log('Cups of espresso: ', this.shot);
-    console.log('Pumps of peppermint: ', this.peppermintSyrup, '\n\n');
+  prepare(): void {
+    console.log("Your Peppermint Mocha Ingredients:");
+    console.log("Dark chocolate");
+    console.log("Cups of milk: ", this.milk);
+    console.log("Cups of espresso: ", this.shot);
+    console.log("Pumps of peppermint: ", this.peppermintSyrup, "\n\n");
   }
 }
 
 // display menu and return selected menu item
-const showMenu = async () => {
+const showMenu = async (): Promise<number> => {
   console.log(
-    'Select Mocha from menu: \n',
-    '1: Create White Chocolate Mocha \n',
-    '2: Create Dark Chocolate Mocha \n',
-    '3: Create Peppermint Mocha\n',
-    '0: Exit\n'
+    "Select Mocha from menu: \n",
+    "1: Create White Chocolate Mocha \n",
+    "2: Create Dark Chocolate Mocha \n",
+    "3: Create Peppermint Mocha\n",
+    "0: Exit\n"
   );
   const qMenu = await menuQ();
-  return qMenu;
+  return qMenu as number;
 };
 
 // User questions
+// here it's <void> as it doesn't return anything it just set the choices
 const userOptions = async (
-  mochaObject
-) => {
-  const milkPicked = await milkQ();
-  const milkChoice = parseInt(milkPicked);
-  const espPicked = await espressoQ();
-  const espChoice = parseInt(espPicked);
+  mochaObject: Mocha | PeppermintMocha
+): Promise<void> => {
+  const milkPicked = (await milkQ()) as unknown as string;
+  const milkChoice: number = parseInt(milkPicked);
+  const espPicked = (await espressoQ()) as unknown as string;
+  const espChoice: number = parseInt(espPicked);
   // If peppermint mocha
   if (mochaObject instanceof PeppermintMocha) {
-    const pepPicked = await peppermintQ();
-    const pepChoice = parseInt(pepPicked);
+    const pepPicked = (await peppermintQ()) as unknown as string;
+    const pepChoice: number = parseInt(pepPicked);
     mochaObject.peppermintSyrup = pepChoice;
   }
 
@@ -124,11 +143,11 @@ const userOptions = async (
   mochaObject.prepare();
 };
 
-const main = () => {
+const main = (): void => {
   let menuChoice = 0;
-  const buildMocha = async ()=> {
+  const buildMocha = async (): Promise<void> => {
     do {
-      const optionPicked = await showMenu();
+      const optionPicked = (await showMenu()) as unknown as string;
       menuChoice = parseInt(optionPicked);
       switch (menuChoice) {
         case 0: {
@@ -150,7 +169,7 @@ const main = () => {
           break;
         }
         default: {
-          console.log('Option invalid, please choose from menu.');
+          console.log("Option invalid, please choose from menu.");
           break;
         }
       }
