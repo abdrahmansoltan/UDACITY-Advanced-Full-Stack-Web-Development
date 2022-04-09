@@ -1,0 +1,23 @@
+{
+  "name": "jasmine-exercise",
+  "version": "1.0.0",
+  "description": "Jasmine Exercise",
+  "main": "index.js",
+  "scripts": {
+    "jasmine": "jasmine",
+    "build": "npx tsc",
+    "test": "npm run build && npm run jasmine"
+  },
+  "author": "Udacity",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jasmine": "^3.6.3",
+    "@types/node": "^14.14.6",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "jasmine": "^3.6.4",
+    "jasmine-spec-reporter": "^6.0.0"
+  }
+}
