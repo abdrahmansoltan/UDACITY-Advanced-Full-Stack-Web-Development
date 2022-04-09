@@ -8,6 +8,14 @@
   - [Test Design Best Practices](#test-design-best-practices)
 - [Jasmine](#jasmine)
   - [Configuring Jasmine](#configuring-jasmine)
+  - [Suites and Specs](#suites-and-specs)
+  - [Jasmine Syntax](#jasmine-syntax)
+    - [Comparisons](#comparisons)
+    - [Truthiness](#truthiness)
+    - [Numerical Matchers](#numerical-matchers)
+    - [Negating](#negating)
+    - [Exceptions (error handling)](#exceptions-error-handling)
+    - [othermatchers](#othermatchers)
 
 ---
 
@@ -103,4 +111,64 @@
 
 - we write the tests in `indexSpec.ts` file
 
-- 
+---
+
+### Suites and Specs
+
+- `Spec`: an individual test
+- `Suite`: a collection of similar tests related to one function
+
+### Jasmine Syntax
+
+- Use the `describe` keyword followed by a short description of what the suite is testing and one or more specs.
+- A best practice is to start a sentence with `“it”` and then complete the sentence with the description of what the suite is testing.
+
+  ```js
+  describe("suite description", () => {
+    it("describes the spec", () => {
+      const myVar = true;
+      expect(myVar).toBe(true);
+    });
+  });
+  ```
+
+#### Comparisons
+
+- `.toEqual(expected value)` -> checks if the tested object is the same object
+  - it's like `==`
+- `toBe()(expected value)` -> checks if the tested object is the same object (same location in memory)
+  - it's like `===`
+
+#### Truthiness
+
+![alt](./img/truthness.PNG)
+
+#### Numerical Matchers
+
+- `.toBeCloseTo(expected value, precision)`
+  - Passes if a value is within a specified `precision` of the expected value
+  - `precision` is optional and is represented the number of decimal points to check (defaults to 2)
+- .toBeGreaterThan(expected value)
+- .toBeLessThan(expected value)
+- .toBeGreaterThanOrEqual(expected value)
+- .toBeLessThanOrEqual(expected value)
+
+#### Negating
+
+![alt](./img/Negating.PNG)
+
+#### Exceptions (error handling)
+
+- `.toThrow(expected value)`
+- `.toThrowError(expected value, expected message`
+
+- expected value and expected message are optional
+
+#### othermatchers
+
+- `.toContain(expected value)`
+- `.toMatch(expected value)`
+- `.toBeDefined()`
+- `.toBeUndefined()`
+- `.toBeNull()`
+- `.toBeNan()`
