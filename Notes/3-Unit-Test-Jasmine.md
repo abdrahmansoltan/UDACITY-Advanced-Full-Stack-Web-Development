@@ -16,6 +16,10 @@
     - [Negating](#negating)
     - [Exceptions (error handling)](#exceptions-error-handling)
     - [othermatchers](#othermatchers)
+- [Testing Asynchronous Code](#testing-asynchronous-code)
+  - [Using async/await](#using-asyncawait)
+  - [Using promise](#using-promise)
+  - [Testing promise resolution and rejection](#testing-promise-resolution-and-rejection)
 
 ---
 
@@ -172,3 +176,44 @@
 - `.toBeUndefined()`
 - `.toBeNull()`
 - `.toBeNan()`
+
+---
+
+## Testing Asynchronous Code
+
+The key to testing async code is letting Jasmine know `when` it’s ready to be tested.
+
+### Using async/await
+
+- Add async before the asynchronous function call
+- Add await before the return
+- Testing occurs after the return
+
+```js
+it("expects asyncFun () result to equal value", async () => {
+  const result = await asyncFun();
+  expect(result).toEqual(value);
+});
+```
+
+### Using promise
+
+- Promise values are included in the return statement
+- Test is run in the .then() statement that is chained to the return value
+
+```js
+it('expects asyncFunc result to equal value', ()
+=> {
+   return asyncFunc (). then ( result => {
+       expect (result).toEqual (value);
+   });
+});
+```
+
+### Testing promise resolution and rejection
+
+- `.toBeResolved()` tests if a promise is resolved and will return true if the promise is resolved
+
+- `.toBeRejected()` tests if a promise is rejected and will return true if the promise is rejected
+
+- `.toBeRejectedWith(expected value)` tests if the expected error is returned
