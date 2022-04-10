@@ -47,6 +47,24 @@ var axios_1 = __importDefault(require("axios"));
  * https://restcountries.eu/rest/v2/regionalbloc/{regionalbloc} for region blocks
  */
 /** Create getCountry Function here */
+function getCountry(name) {
+    return __awaiter(this, void 0, void 0, function () {
+        var getApi, data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, axios_1.default("https://restcountries.eu/rest/v2/name/" + name)];
+                case 1:
+                    getApi = _a.sent();
+                    data = getApi.data[0];
+                    return [2 /*return*/, {
+                            capital: data.capital,
+                            region: data.region,
+                            numericCode: data.numericCode,
+                        }];
+            }
+        });
+    });
+}
 /** Create a test for this getRegion function */
 function getRegionCountries(regionalbloc) {
     return __awaiter(this, void 0, void 0, function () {
@@ -67,6 +85,29 @@ function getRegionCountries(regionalbloc) {
     });
 }
 /** Create getRegionCapitals function here */
+function getRegionCapitals(regionalbloc) {
+    return __awaiter(this, void 0, void 0, function () {
+        var countryEndpoints, promises, arr, capitals, i;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, getRegionCountries(regionalbloc)];
+                case 1:
+                    countryEndpoints = _a.sent();
+                    promises = countryEndpoints.map(function (endpoint) {
+                        return axios_1.default("https://restcountries.eu/rest/v2/name/" + endpoint);
+                    });
+                    return [4 /*yield*/, Promise.all(promises)];
+                case 2:
+                    arr = _a.sent();
+                    capitals = [];
+                    for (i = 0; i < arr.length; i++) {
+                        capitals.push(arr[i].data[0].capital);
+                    }
+                    return [2 /*return*/, capitals];
+            }
+        });
+    });
+}
 exports.default = {
     getCountry: getCountry,
     getRegionCountries: getRegionCountries,

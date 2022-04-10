@@ -40,6 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __importDefault(require("../index"));
+/** test for getCountry function */
 it("should get basic data on the country canada", function () { return __awaiter(void 0, void 0, void 0, function () {
     var data;
     return __generator(this, function (_a) {
@@ -57,6 +58,19 @@ it("should get basic data on the country canada", function () { return __awaiter
     });
 }); });
 /** Add test for getRegionCountries function here */
+it("should get the countries in the region NAFTA", function () { return __awaiter(void 0, void 0, void 0, function () {
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, index_1.default.getRegionCountries("nafta")];
+            case 1:
+                data = _a.sent();
+                expect(data).toEqual(["Canada", "Mexico", "United States of America"]);
+                return [2 /*return*/];
+        }
+    });
+}); });
+/** test for getRegionCapitals function */
 it("should get capitals of NAFTA countries", function () { return __awaiter(void 0, void 0, void 0, function () {
     var data;
     return __generator(this, function (_a) {
