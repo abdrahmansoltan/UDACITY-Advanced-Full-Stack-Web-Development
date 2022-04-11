@@ -27,6 +27,7 @@
     - [`beforeEach` and `afterEach`](#beforeeach-and-aftereach)
     - [`beforeAll` and `afterAll`](#beforeall-and-afterall)
   - [Skipping or Specifying Tests](#skipping-or-specifying-tests)
+- [Testing Pyramid](#testing-pyramid)
 
 ---
 
@@ -47,7 +48,7 @@
 
 #### Test-Driven Development (TDD)
 
-- A development style where tests are written before development
+- A development style where tests are written `before` development
 - It focuses on writing unit and integration tests that produce expected results.
 - Test Driven Development Cycle
 
@@ -333,3 +334,17 @@ fdescribe("A spec", function () {
   });
 });
 ```
+
+---
+
+## Testing Pyramid
+
+![Testing Pyramid](./img/Testing%20Pyramid.PNG)
+
+- Jasmine works well with `Unit Testing` and `Integration Testing`.
+
+  - the difference between Unit Testing and Integration Testing is the use of third-party integration.
+
+- Jasmine can be used for `End-to-End Testing` with a tool call `Selenium` to emulate user interactions.
+
+- For `UI Testing`, Jasmine is simply not helpful.
