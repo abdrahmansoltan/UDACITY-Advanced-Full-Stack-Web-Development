@@ -20,6 +20,13 @@
   - [Using async/await](#using-asyncawait)
   - [Using promise](#using-promise)
   - [Testing promise resolution and rejection](#testing-promise-resolution-and-rejection)
+- [Endpoint Testing](#endpoint-testing)
+  - [Framework for Endpoint Testing](#framework-for-endpoint-testing)
+- [Performing Tasks Before and After Tests](#performing-tasks-before-and-after-tests)
+  - [Teardown of Suites](#teardown-of-suites)
+    - [`beforeEach` and `afterEach`](#beforeeach-and-aftereach)
+    - [`beforeAll` and `afterAll`](#beforeall-and-afterall)
+  - [Skipping or Specifying Tests](#skipping-or-specifying-tests)
 
 ---
 
@@ -217,3 +224,112 @@ it('expects asyncFunc result to equal value', ()
 - `.toBeRejected()` tests if a promise is rejected and will return true if the promise is rejected
 
 - `.toBeRejectedWith(expected value)` tests if the expected error is returned
+
+---
+
+## Endpoint Testing
+
+- `endpoint`
+
+  - is the `URL` of the REST API with the method that (gets, adds to, or modifies) the data of an API in some way.
+
+- Benefits of Endpoint Testing
+
+  - Confirms that the server is working.
+  - Confirms that endpoints are configured properly.
+  - More efficient than manual testing.
+
+### Framework for Endpoint Testing
+
+- [Supertest ](https://www.npmjs.com/package/supertest)
+  - tests the status of responses from servers.
+
+```bash
+npm i supertest
+npm i --save-dev @types/supertest.  #  compile without TypeScript errors.
+```
+
+- ex
+
+```ts
+import supertest from "supertest";
+import app from "../index";
+
+const request = supertest(app);
+describe("Test endpoint responses", () => {
+  it("gets the api endpoint", async (doneCallback) => {
+    const response = await request.get("/api");
+    expect(response.status).toBe(200);
+    doneCallback();
+  });
+});
+```
+
+---
+
+## Performing Tasks Before and After Tests
+
+### Teardown of Suites
+
+- These Jasmine features allow you to
+
+  - Connect to a database before a test
+  - Connect to a different database for specific tests
+  - Run only a specific test
+  - Skip one or more tests
+
+#### `beforeEach` and `afterEach`
+
+- `beforeEach` takes a callback function where we can tell the test to perform a task before each test is run.
+
+- `afterEach` is used if there is a task to be run after each test is complete.
+
+  ![alt](./img/before-each-and-after-each.jpg)
+
+  ```js
+  describe("", () => {
+    beforeEach(function () {
+      // callback function
+      foo = 1;
+    });
+
+    it("", () => {
+      expect(foo).toEqual(1);
+      foo += 1;
+    });
+
+    it("", () => {
+      expect(foo).toEqual(2);
+    });
+  });
+  ```
+
+#### `beforeAll` and `afterAll`
+
+- perform an operation once before/after **all the specs** in a suite
+
+  ![alt](./img/beforeall-and-afterall.jpg)
+
+- Handling Multiple Suites with `beforeAll` and `afterAll`
+
+  ![alt](./img/muliple.jpg)
+
+---
+
+### Skipping or Specifying Tests
+
+![Skipping](./img/Skipping.PNG)
+
+```js
+xdescribe("A spec", function () {
+  it("is just a function, so it can contain any code", () => {
+    expect(foo).toEqual(1);
+  });
+});
+
+fdescribe("A spec", function () {
+  it("is just a function, so it can contain any code", () => {
+    expect(foo).toEqual(1);
+  });
+});
+```
