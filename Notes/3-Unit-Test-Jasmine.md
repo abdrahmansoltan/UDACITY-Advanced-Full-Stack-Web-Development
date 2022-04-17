@@ -6,10 +6,11 @@
     - [Behavior Driven Development (BDD)](#behavior-driven-development-bdd)
     - [Test-Driven Development (TDD)](#test-driven-development-tdd)
   - [Test Design Best Practices](#test-design-best-practices)
-- [Jasmine](#jasmine)
-  - [Configuring Jasmine](#configuring-jasmine)
   - [Suites and Specs](#suites-and-specs)
-  - [Jasmine Syntax](#jasmine-syntax)
+- [Jasmine - Configuring](#jasmine---configuring)
+  - [Installation](#installation)
+- [Jasmine Syntax](#jasmine-syntax)
+  - [Matchers](#matchers)
     - [Comparisons](#comparisons)
     - [Truthiness](#truthiness)
     - [Numerical Matchers](#numerical-matchers)
@@ -67,9 +68,18 @@
 
 ---
 
-## Jasmine
+### Suites and Specs
 
-### Configuring Jasmine
+- `Spec`: an individual test
+- `Suite`: a collection of similar tests related to one function
+
+![spec](./img/spec.PNG)
+
+---
+
+## Jasmine - Configuring
+
+### Installation
 
 - bash
 
@@ -89,7 +99,7 @@
   "scripts": {
     "build" : "npx tsc",
     "jasmine": "jasmine",
-    "test": "npm run build && npm run jasmine"
+    "test": "npm run build && npm run jasmine" // this will ensures that (build) commend is ran first then (jasmin) commend
   },
   ```
 
@@ -125,12 +135,7 @@
 
 ---
 
-### Suites and Specs
-
-- `Spec`: an individual test
-- `Suite`: a collection of similar tests related to one function
-
-### Jasmine Syntax
+## Jasmine Syntax
 
 - Use the `describe` keyword followed by a short description of what the suite is testing and one or more specs.
 - A best practice is to start a sentence with `“it”` and then complete the sentence with the description of what the suite is testing.
@@ -143,6 +148,10 @@
     });
   });
   ```
+
+---
+
+### Matchers
 
 #### Comparisons
 
@@ -246,22 +255,25 @@ it('expects asyncFunc result to equal value', ()
   - tests the status of responses from servers.
 
 ```bash
+# here we install it as a dependency as it's done after combiling from TS to JS
 npm i supertest
+
 npm i --save-dev @types/supertest.  #  compile without TypeScript errors.
 ```
 
 - ex
 
 ```ts
-import supertest from "supertest";
-import app from "../index";
+import supertest from "supertest"; // the module
+import app from "../index"; // the file that have the server code
 
-const request = supertest(app);
+const request = supertest(app); // telling supertest where the server is
+
 describe("Test endpoint responses", () => {
   it("gets the api endpoint", async (doneCallback) => {
     const response = await request.get("/api");
-    expect(response.status).toBe(200);
-    doneCallback();
+    expect(response.status).toBe(200); // success code
+    doneCallback();  // it tells supertest to close the server-calling
   });
 });
 ```
@@ -274,7 +286,7 @@ describe("Test endpoint responses", () => {
 
 - These Jasmine features allow you to
 
-  - Connect to a database before a test
+  - Connect to a `database` before a test
   - Connect to a different database for specific tests
   - Run only a specific test
   - Skip one or more tests
