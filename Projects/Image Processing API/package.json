@@ -1,0 +1,27 @@
+{
+  "name": "image-processing-api",
+  "version": "1.0.0",
+  "description": "simple placeholder API, the first allows you to place images into your frontend with the size set via URL parameters",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "build": "npx tsc",
+    "jasmine": "jasmine",
+    "test": "npm run build && npm run jasmine"
+  },
+  "author": "Abdelrahman Soltan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "jasmine": "^4.1.0",
+    "jasmine-spec-reporter": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jasmine": "^4.0.3",
+    "@types/node": "^17.0.24",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
+}
