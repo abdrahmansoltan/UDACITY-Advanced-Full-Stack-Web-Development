@@ -45,11 +45,11 @@ img_router.get("/:imgName", async (req, res) => {
 
   // Displaying the image
   if (!img_width && !img_height) {
-    res.sendFile(sourceIMG);
+    res.status(200).sendFile(sourceIMG);
   } else {
     await imgCropper(sourceIMG, distinationIMG, img_width, img_height);
 
-    await res.sendFile(distinationIMG);
+    await res.status(200).sendFile(distinationIMG);
     // here must use "await" to make it wait for the cropping first
   }
 });

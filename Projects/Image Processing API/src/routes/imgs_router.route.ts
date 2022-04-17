@@ -18,7 +18,7 @@ select image from the folowing:
 `;
 
 imgs_router.get("/", async (req, res) => {
-  res.send(message);
+  res.status(200).send(message);
 });
 
 export default imgs_router;
