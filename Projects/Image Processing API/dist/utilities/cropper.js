@@ -35,17 +35,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var imgs_router = express_1.default.Router();
-var message = "\n<h2>select image from the folowing:</h2>\n<p>USE QUERIES TO SHOW IMAGE WITH SPECIFIC SIZE \uD83D\uDC49 EX:\n<a href=\"http://localhost:3000/images/encenadaport?width=200&height=200\">Image with size=(200x200)</a>\n</p>\n<ul>\n<li><a href=\"http://localhost:3000/images/encenadaport\">encenadaport</a></li>\n<li><a href=\"http://localhost:3000/images/fjord\">fjord</a></li>\n<li><a href=\"http://localhost:3000/images/icelandwaterfall\">icelandwaterfall</a></li>\n<li><a href=\"http://localhost:3000/images/palmtunnel\">palmtunnel</a></li>\n<li><a href=\"http://localhost:3000/images/santamonica\">santamonica</a></li>\n</ul>\n";
-imgs_router.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        res.status(200).send(message);
-        return [2 /*return*/];
+var sharp = require('sharp');
+// using Sharp to crop the image
+var imgCropper = function (src, dist, reqWidth, // default values
+reqHeight // default values
+) {
+    if (reqWidth === void 0) { reqWidth = 300; }
+    if (reqHeight === void 0) { reqHeight = 300; }
+    return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, sharp(src).resize(reqWidth, reqHeight).toFormat('jpeg').toFile(dist)];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
     });
-}); });
-exports.default = imgs_router;
+};
+exports.default = imgCropper;

@@ -40,53 +40,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var sharp = require("sharp");
-var path = require("path");
-var fs = require("fs");
+var cropper_1 = __importDefault(require("../utilities/cropper"));
+var path = require('path');
+var fs = require('fs');
 var img_router = express_1.default.Router();
 var errMessage = "\n      <h2>image not found, please enter valid image from the following:</h2>\n      <ul>\n        <li><a href=\"http://localhost:3000/images/encenadaport\">encenadaport</a></li>\n        <li><a href=\"http://localhost:3000/images/fjord\">fjord</a></li>\n        <li><a href=\"http://localhost:3000/images/icelandwaterfall\">icelandwaterfall</a></li>\n        <li><a href=\"http://localhost:3000/images/palmtunnel\">palmtunnel</a></li>\n        <li><a href=\"http://localhost:3000/images/santamonica\">santamonica</a></li>\n      </ul>\n      ";
-img_router.get("/:imgName", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var img_name, img_width, img_height, img_names, sourceIMG, distinationIMG, imgCropper, error_1;
+img_router.get('/:imgName', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var img_name, img_width, img_height, img_names, sourceIMG, distinationIMG, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 img_name = req.params.imgName;
                 img_width = parseInt(req.query.width);
                 img_height = parseInt(req.query.height);
-                return [4 /*yield*/, fs.promises.readdir("images")];
+                return [4 /*yield*/, fs.promises.readdir('images')];
             case 1:
                 img_names = _a.sent();
-                sourceIMG = path.join(__dirname, "../", "../", "images", "".concat(img_name, ".jpg"));
-                distinationIMG = path.join(__dirname, "../", "../", "croppedImages", "".concat(img_name, "-").concat(img_width, "-").concat(img_height, ".jpg"));
-                imgCropper = function (src, dist, reqWidth, // default values
-                reqHeight // default values
-                ) {
-                    if (reqWidth === void 0) { reqWidth = 300; }
-                    if (reqHeight === void 0) { reqHeight = 300; }
-                    return __awaiter(void 0, void 0, void 0, function () {
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0: return [4 /*yield*/, sharp(src)
-                                        .resize(reqWidth, reqHeight)
-                                        .toFormat("jpeg")
-                                        .toFile(dist)];
-                                case 1:
-                                    _a.sent();
-                                    return [2 /*return*/];
-                            }
-                        });
-                    });
-                };
+                sourceIMG = path.join(__dirname, '../', '../', 'images', "".concat(img_name, ".jpg"));
+                distinationIMG = path.join(__dirname, '../', '../', 'croppedImages', "".concat(img_name, "-").concat(img_width, "-").concat(img_height, ".jpg"));
                 _a.label = 2;
             case 2:
                 _a.trys.push([2, 8, , 9]);
-                if (!!img_names.includes(img_name + ".jpg")) return [3 /*break*/, 3];
+                if (!!img_names.includes(img_name + '.jpg')) return [3 /*break*/, 3];
                 throw new Error();
             case 3:
                 if (!(!img_width && !img_height)) return [3 /*break*/, 4];
                 res.status(200).sendFile(sourceIMG);
                 return [3 /*break*/, 7];
-            case 4: return [4 /*yield*/, imgCropper(sourceIMG, distinationIMG, img_width, img_height)];
+            case 4: return [4 /*yield*/, (0, cropper_1.default)(sourceIMG, distinationIMG, img_width, img_height)];
             case 5:
                 _a.sent();
                 return [4 /*yield*/, res.status(200).sendFile(distinationIMG)];

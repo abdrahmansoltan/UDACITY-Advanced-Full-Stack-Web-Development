@@ -1,5 +1,5 @@
 import express from 'express';
-const sharp = require('sharp');
+import imgCropper from '../utilities/cropper';
 const path = require('path');
 const fs = require('fs');
 const img_router = express.Router();
@@ -41,19 +41,6 @@ img_router.get(
       'croppedImages',
       `${img_name}-${img_width}-${img_height}.jpg`
     );
-
-    // using Sharp to crop the image
-    const imgCropper: Function = async (
-      src: string,
-      dist: string,
-      reqWidth: number = 300, // default values
-      reqHeight: number = 300 // default values
-    ) => {
-      await sharp(src)
-        .resize(reqWidth, reqHeight)
-        .toFormat('jpeg')
-        .toFile(dist);
-    };
 
     //--------------error handling--------------//
     try {

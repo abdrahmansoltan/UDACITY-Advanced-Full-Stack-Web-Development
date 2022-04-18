@@ -35,15 +35,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var app = require("../index"); // Link to your server file
-var supertest = require("supertest");
+var app = require('../index'); // Link to your server file
+var supertest = require('supertest');
 var request = supertest(app);
-describe("Test endpoint responses", function () {
-    it("should gets the valid endpoint response", function () { return __awaiter(void 0, void 0, void 0, function () {
+describe('Test endpoint responses', function () {
+    it('should gets the valid endpoint response', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, request.get("/images/encenadaport?width=200&height=200")];
+                case 0: return [4 /*yield*/, request.get('/images/encenadaport?width=200&height=200')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
@@ -51,11 +51,11 @@ describe("Test endpoint responses", function () {
             }
         });
     }); });
-    it("should return Error-404 for invalid image name", function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('should return Error-404 for invalid image name', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, request.get("/images/dummyImg")];
+                case 0: return [4 /*yield*/, request.get('/images/dummyImg')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(404);

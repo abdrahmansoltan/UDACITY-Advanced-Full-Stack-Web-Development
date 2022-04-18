@@ -39,13 +39,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var imgs_router = express_1.default.Router();
-var message = "\n<h2>select image from the folowing:</h2>\n<p>USE QUERIES TO SHOW IMAGE WITH SPECIFIC SIZE \uD83D\uDC49 EX:\n<a href=\"http://localhost:3000/images/encenadaport?width=200&height=200\">Image with size=(200x200)</a>\n</p>\n<ul>\n<li><a href=\"http://localhost:3000/images/encenadaport\">encenadaport</a></li>\n<li><a href=\"http://localhost:3000/images/fjord\">fjord</a></li>\n<li><a href=\"http://localhost:3000/images/icelandwaterfall\">icelandwaterfall</a></li>\n<li><a href=\"http://localhost:3000/images/palmtunnel\">palmtunnel</a></li>\n<li><a href=\"http://localhost:3000/images/santamonica\">santamonica</a></li>\n</ul>\n";
-imgs_router.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        res.status(200).send(message);
-        return [2 /*return*/];
-    });
-}); });
-exports.default = imgs_router;
+var path_1 = __importDefault(require("path"));
+var cropper_1 = __importDefault(require("../../utilities/cropper"));
+describe('Test image cropping using Sharp', function () {
+    it('should get the cropped image with the specified width and height', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var sourceIMG, distinationIMG;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    sourceIMG = path_1.default.join(__dirname, '../', '../', '../', 'images', 'palmtunnel.jpg');
+                    distinationIMG = path_1.default.join(__dirname, '../', '../', '../', 'croppedImages', 'palmtunnel-200-200.jpg');
+                    return [4 /*yield*/, (0, cropper_1.default)(sourceIMG, distinationIMG, 200, 200)];
+                case 1:
+                    _a.sent();
+                    expect(distinationIMG).toBeTruthy();
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+});
