@@ -258,7 +258,7 @@ it('expects asyncFunc result to equal value', ()
 # here we install it as a dependency as it's done after combiling from TS to JS
 npm i supertest
 
-npm i --save-dev @types/supertest.  #  compile without TypeScript errors.
+npm i --save-dev @types/supertest  #  compile without TypeScript errors.
 ```
 
 - ex

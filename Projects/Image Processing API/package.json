@@ -17,12 +17,14 @@
     "express": "^4.17.3",
     "jasmine": "^4.1.0",
     "jasmine-spec-reporter": "^7.0.0",
-    "sharp": "^0.30.3"
+    "sharp": "^0.30.3",
+    "supertest": "^6.2.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/jasmine": "^4.0.3",
     "@types/node": "^17.0.24",
+    "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
     "eslint": "^8.13.0",

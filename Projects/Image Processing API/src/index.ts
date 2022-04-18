@@ -11,3 +11,5 @@ app.use("/images", img_router);
 app.listen(PORT, (): void => {
   console.log(`server started at http://localhost:${PORT}/images`);
 });
+
+module.exports = app; // export for testing
