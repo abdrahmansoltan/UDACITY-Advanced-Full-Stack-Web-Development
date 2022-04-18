@@ -2,9 +2,7 @@ import express from "express";
 
 const imgs_router = express.Router();
 const message: string = `
-select image from the folowing:
-<br>
-<br>
+<h2>select image from the folowing:</h2>
 <p>USE QUERIES TO SHOW IMAGE WITH SPECIFIC SIZE 👉 EX:
 <a href="http://localhost:3000/images/encenadaport?width=200&height=200">Image with size=(200x200)</a>
 </p>
@@ -17,7 +15,7 @@ select image from the folowing:
 </ul>
 `;
 
-imgs_router.get("/", async (req, res) => {
+imgs_router.get("/", async (req: express.Request, res: express.Response) => {
   res.status(200).send(message);
 });
 

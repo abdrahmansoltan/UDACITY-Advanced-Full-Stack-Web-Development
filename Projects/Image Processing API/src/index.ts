@@ -8,15 +8,6 @@ const PORT: number = 3000;
 app.use("/images", imgs_router);
 app.use("/images", img_router);
 
-app.listen(PORT, ():void => {
+app.listen(PORT, (): void => {
   console.log(`server started at http://localhost:${PORT}/images`);
 });
-
-// images names :
-// [
-//   encenadaport
-//   fjord
-//   icelandwaterfall
-//   palmtunnel
-//   santamonica
-// ];
