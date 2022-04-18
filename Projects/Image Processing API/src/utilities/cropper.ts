@@ -6,7 +6,7 @@ const imgCropper: Function = async (
   dist: string,
   reqWidth: number = 300, // default values
   reqHeight: number = 300 // default values
-) => {
+): Promise<void> => {
   await sharp(src).resize(reqWidth, reqHeight).toFormat('jpeg').toFile(dist);
 };
 

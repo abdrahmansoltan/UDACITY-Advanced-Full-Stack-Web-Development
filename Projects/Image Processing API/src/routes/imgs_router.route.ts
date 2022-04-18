@@ -1,6 +1,6 @@
 import express from 'express';
 
-const imgs_router = express.Router();
+const imgs_router: express.Router = express.Router();
 const message: string = `
 <h2>select image from the folowing:</h2>
 <p>USE QUERIES TO SHOW IMAGE WITH SPECIFIC SIZE 👉 EX:
@@ -15,8 +15,11 @@ const message: string = `
 </ul>
 `;
 
-imgs_router.get('/', async (req: express.Request, res: express.Response) => {
-  res.status(200).send(message);
-});
+imgs_router.get(
+  '/',
+  async (req: express.Request, res: express.Response): Promise<void> => {
+    res.status(200).send(message);
+  }
+);
 
 export default imgs_router;

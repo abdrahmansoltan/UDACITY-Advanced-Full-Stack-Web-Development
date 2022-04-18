@@ -17,14 +17,14 @@ const errMessage: string = `
 
 img_router.get(
   '/:imgName',
-  async (req: express.Request, res: express.Response) => {
+  async (req: express.Request, res: express.Response): Promise<void> => {
     // getting the input-data
     const img_name: string = req.params.imgName;
     const img_width: number = parseInt(req.query.width as string);
     const img_height: number = parseInt(req.query.height as string);
 
     // reading "images" folder
-    const img_names = await fs.promises.readdir('images'); // array of the images names
+    const img_names: string[] = await fs.promises.readdir('images'); // array of the images names
 
     // source/distination paths
     const sourceIMG: string = path.join(
