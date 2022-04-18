@@ -12,7 +12,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-    <img src="../imgs/imgCropper.svg" alt="Logo" height="80">
+    <img src="./assets/imgCropper.svg" alt="Logo" height="80">
 
   <h3 align="center">Image Processing API</h3>
 
@@ -47,7 +47,7 @@
 
 ## About The Project
 
-![imgCropper preview](../imgs/imgCropper-preview.gif)
+![imgCropper preview](./assets/imgCropper-preview.gif)
 
 Image Processing API using `node.js` & `Express` to create a server that displays image with the width and height specified by the user
 
@@ -64,7 +64,7 @@ Image Processing API using `node.js` & `Express` to create a server that display
 
 ### Flowchart
 
-<img src='../imgs/flowshart1.PNG' alt='flowchart' >
+<img src='./assets/flowshart1.PNG' alt='flowchart' >
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
