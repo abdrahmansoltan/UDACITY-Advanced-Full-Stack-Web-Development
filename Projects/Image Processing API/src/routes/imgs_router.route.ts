@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express';
 
 const imgs_router = express.Router();
 const message: string = `
@@ -15,7 +15,7 @@ const message: string = `
 </ul>
 `;
 
-imgs_router.get("/", async (req: express.Request, res: express.Response) => {
+imgs_router.get('/', async (req: express.Request, res: express.Response) => {
   res.status(200).send(message);
 });
 

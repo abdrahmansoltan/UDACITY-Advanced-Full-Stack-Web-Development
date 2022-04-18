@@ -1,7 +1,7 @@
-import express from "express";
-const sharp = require("sharp");
-const path = require("path");
-const fs = require("fs");
+import express from 'express';
+const sharp = require('sharp');
+const path = require('path');
+const fs = require('fs');
 const img_router = express.Router();
 
 const errMessage: string = `
@@ -16,7 +16,7 @@ const errMessage: string = `
       `;
 
 img_router.get(
-  "/:imgName",
+  '/:imgName',
   async (req: express.Request, res: express.Response) => {
     // getting the input-data
     const img_name: string = req.params.imgName;
@@ -24,21 +24,21 @@ img_router.get(
     const img_height: number = parseInt(req.query.height as string);
 
     // reading "images" folder
-    const img_names = await fs.promises.readdir("images"); // array of the images names
+    const img_names = await fs.promises.readdir('images'); // array of the images names
 
     // source/distination paths
     const sourceIMG: string = path.join(
       __dirname,
-      "../",
-      "../",
-      "images",
+      '../',
+      '../',
+      'images',
       `${img_name}.jpg`
     );
     const distinationIMG: string = path.join(
       __dirname,
-      "../",
-      "../",
-      "croppedImages",
+      '../',
+      '../',
+      'croppedImages',
       `${img_name}-${img_width}-${img_height}.jpg`
     );
 
@@ -51,13 +51,13 @@ img_router.get(
     ) => {
       await sharp(src)
         .resize(reqWidth, reqHeight)
-        .toFormat("jpeg")
+        .toFormat('jpeg')
         .toFile(dist);
     };
 
     //--------------error handling--------------//
     try {
-      if (!img_names.includes(img_name + ".jpg")) throw new Error();
+      if (!img_names.includes(img_name + '.jpg')) throw new Error();
       // Displaying the image
       else if (!img_width && !img_height) {
         res.status(200).sendFile(sourceIMG);
