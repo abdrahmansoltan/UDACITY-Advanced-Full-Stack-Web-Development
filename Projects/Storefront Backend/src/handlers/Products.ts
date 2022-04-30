@@ -11,8 +11,7 @@ const index = async (req: Request, res: Response) => {
     const products: ProductType[] = await store.index();
     res.json(products);
   } catch (err) {
-    res.status(400);
-    res.json(err);
+    res.status(400).json(err);
   }
 };
 
@@ -23,8 +22,7 @@ const show = async (req: Request, res: Response) => {
     const product: ProductType = await store.show(productId);
     res.json(product);
   } catch (err) {
-    res.status(400);
-    res.json(err);
+    res.status(400).json(err);
   }
 };
 
@@ -49,7 +47,7 @@ const showByCategory = async (req: Request, res: Response) => {
   try {
     const category: string = String(req.params.category);
     const productsByCat: ProductType[] = await store.getProductsByCat(category);
-    return res.json(productsByCat);
+    res.json(productsByCat);
   } catch (err) {
     res.status(400);
     res.json(err);

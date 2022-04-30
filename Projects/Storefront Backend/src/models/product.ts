@@ -39,6 +39,7 @@ export class ProductStore {
 
       const sql: string =
         "INSERT INTO products (name, price, category) VALUES($1, $2, $3) RETURNING *";
+
       const conn: PoolClient = await client.connect();
       const result: QueryResult = await conn.query(sql, [
         name,

@@ -39,25 +39,14 @@ const create = async (req: Request, res: Response) => {
     };
 
     // create user
-    try {
-      const newUser = await UserStore.create(user);
-      console.log(newUser);
-
-      const token = jwt.sign(
-        { user: newUser },
-        process.env.TOKEN_SECRET as string
-      );
-      res.json(token);
-    } catch (err) {
-      res.status(400);
-      const error = err as string;
-      res.json(error + user);
-    }
-
-    res.json("new user's data");
+    const newUser = await UserStore.create(user);
+    const token = jwt.sign(
+      { user: newUser },
+      process.env.TOKEN_SECRET as string
+    );
+    res.json(token);
   } catch (err) {
-    res.status(400); // Bad Request
-    res.json(err);
+    res.status(400).json(err);
   }
 };
 

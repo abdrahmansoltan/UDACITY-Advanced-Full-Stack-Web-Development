@@ -3,5 +3,4 @@ CREATE TABLE orders(
     product_id INTEGER,
     quantity INTEGER DEFAULT 1,
     user_id INTEGER,
-    status VARCHAR(20) NOT NULL,
-);
+    status VARCHAR(20) NOT NULL);
