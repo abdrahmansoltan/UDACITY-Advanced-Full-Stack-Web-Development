@@ -1,21 +1,33 @@
 import express, { Request, Response } from "express";
 import verifyAuthToken from "../helpers/tokenAuth";
-// TODO: import order-class from the model
+import { Order, OrderType } from "../models/order";
+
+const orderStore = new Order();
 
 // ---------CRUD functions--------- //
 
-// Get current order by user id
-const show = async (req: Request, res: Response) => {
-  const userId: number = parseInt(req.params.user_id);
-  // TODO: get current order
-  res.json("current order");
-};
-
 // Get all completed orders by user id
 const index = async (req: Request, res: Response) => {
-  const userId: number = parseInt(req.params.user_id);
-  // TODO: get completed orders
-  res.json("current order");
+  try {
+    const userId: number = parseInt(req.params.user_id);
+    const Orders: OrderType[] = await orderStore.index(userId);
+    return res.json(Orders);
+  } catch (err) {
+    res.status(400);
+    res.json(err);
+  }
+};
+
+// Get current order by user id
+const show = async (req: Request, res: Response) => {
+  try {
+    const userId: number = parseInt(req.params.user_id);
+    const Order: OrderType = await orderStore.show(userId);
+    return res.json(Order);
+  } catch (err) {
+    res.status(400);
+    res.json(err);
+  }
 };
 
 // each route use one model

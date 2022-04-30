@@ -1,16 +1,25 @@
-import express, { Request, Response } from "express";
-// TODO: import JWT
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
 
 // middleware
-const verifyAuthToken = (req: Request, res: Response, next: Function): void => {
+const verifyAuthToken = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   try {
-    const authHeader = req.headers.authorization;
+    const authHeader: string | undefined = req.headers.authorization;
     const token = (authHeader as string).split(" ")[1];
-    //TODO: const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+    const decoded: string | object = jwt.verify(
+      token,
+      process.env.TOKEN_SECRET as string
+    );
 
+    res.locals.userData = decoded;
     next(); // !IMPORTANT
   } catch (error) {
     res.status(401);
+    next();
   }
 };
 

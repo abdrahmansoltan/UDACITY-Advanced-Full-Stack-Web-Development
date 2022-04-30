@@ -8,11 +8,11 @@ export type OrderType = {
 };
 
 export class Order {
-  async index(): Promise<OrderType[]> {
+  async index(id: number): Promise<OrderType[]> {
     try {
       const conn: PoolClient = await client.connect();
-      const sql: string = "SELECT * FROM orders";
-      const result: QueryResult = await conn.query(sql);
+      const sql: string = "SELECT * FROM orders WHERE user_id=$1`";
+      const result = await conn.query(sql, [id]);
       conn.release();
       return result.rows;
     } catch (err) {

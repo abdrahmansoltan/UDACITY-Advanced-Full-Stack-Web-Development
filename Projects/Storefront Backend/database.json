@@ -3,14 +3,14 @@
     "driver": "pg",
     "host": "127.0.0.1",
     "database": "store_front",
-    "user": "full_stack_user",
+    "user": "project_user",
     "password": "password123"
   },
   "test": {
     "driver": "pg",
     "host": "127.0.0.1",
     "database": "store_front_test",
-    "user": "full_stack_user",
+    "user": "project_user",
     "password": "password123"
   }
 }

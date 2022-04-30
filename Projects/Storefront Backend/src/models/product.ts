@@ -53,7 +53,7 @@ export class ProductStore {
     }
   }
 
-  async getProductByCat(category: string): Promise<ProductType[]> {
+  async getProductsByCat(category: string): Promise<ProductType[]> {
     try {
       const conn: PoolClient = await client.connect();
       const sql: string = `SELECT * FROM products WHERE category=$1`;
