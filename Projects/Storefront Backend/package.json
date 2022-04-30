@@ -12,6 +12,7 @@
   "author": "Abdelrahman Soltan",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "db-migrate": "^0.11.13",
     "db-migrate-pg": "^1.2.2",
