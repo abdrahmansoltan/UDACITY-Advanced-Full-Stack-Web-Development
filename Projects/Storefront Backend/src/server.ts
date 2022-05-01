@@ -1,11 +1,16 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import morgan from "morgan";
 import productsRoutes from "./handlers/Products";
 import usersRoutes from "./handlers/users";
 import ordersRoutes from "./handlers/orders";
 
 const app: express.Application = express(); // export for testing
+
+// HTTP request logger middleware
+app.use(morgan("short"));
+
 dotenv.config(); // // initialize the environment variables
 
 const { PORT } = process.env;
