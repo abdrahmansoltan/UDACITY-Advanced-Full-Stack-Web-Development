@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var tokenAuth_1 = __importDefault(require("../helpers/tokenAuth"));
 var product_1 = require("../models/product");
 var store = new product_1.ProductStore();
@@ -94,7 +94,7 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 product = {
                     name: req.body.name,
                     price: req.body.price,
-                    category: req.body.category
+                    category: req.body.category,
                 };
                 return [4 /*yield*/, store.create(product)];
             case 1:
@@ -157,8 +157,8 @@ var destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
 var productsRoutes = function (app) {
     app.get("/products", index);
     app.get("/products/:id", show);
-    app.post("/products", tokenAuth_1["default"], create);
+    app.post("/products", tokenAuth_1.default, create);
     app.get("/products/category/:category", showByCategory);
-    app["delete"]("/products/:id", destroy);
+    app.delete("/products/:id", destroy);
 };
-exports["default"] = productsRoutes; // to be used in the server file to have clean code
+exports.default = productsRoutes; // to be used in the server file to have clean code

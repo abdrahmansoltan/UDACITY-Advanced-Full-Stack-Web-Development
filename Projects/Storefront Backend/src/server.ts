@@ -5,7 +5,7 @@ import productsRoutes from "./handlers/Products";
 import usersRoutes from "./handlers/users";
 import ordersRoutes from "./handlers/orders";
 
-const app: express.Application = express();
+const app: express.Application = express(); // export for testing
 dotenv.config(); // // initialize the environment variables
 
 const { PORT } = process.env;
@@ -23,3 +23,5 @@ app.get("/", function (req: Request, res: Response) {
 app.listen(3000, function () {
   console.log(`listening on port http://localhost:${PORT}`);
 });
+
+module.exports = app;
