@@ -38,5 +38,5 @@ These are the notes from a meeting with the frontend developer that describe wha
 - id of each product in the order
 - quantity of each product in the order
 - user_id
-- status of order (active or complete)
+- status of order (active or current or complete)
 
