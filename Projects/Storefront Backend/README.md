@@ -45,7 +45,9 @@
 
 ## About The Project
 
-Image Processing API using `node.js` & `Express` to create a server that displays image with the width and height specified by the user
+This is a backend API build in Nodejs for an online store. It exposes a RESTful API that will be used by the frontend developer on the frontend.
+
+The database schema and and API route information can be found in the [REQUIREMENT.md](REQUIREMENTS.md)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
