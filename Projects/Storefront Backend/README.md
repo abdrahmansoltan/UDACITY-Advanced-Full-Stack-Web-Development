@@ -34,6 +34,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#ports--endpoints">Ports & EndPoints</a></li>
       </ul>
     </li>
     <li><a href="#contributing">Contributing</a></li>
@@ -57,7 +58,7 @@ The database schema and and API route information can be found in the [REQUIREME
 - Node.js
 - Epress framework
 - Jasmine
-- postgresql
+- postgreSQL
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -168,25 +169,34 @@ This project require some prequesites and dependenscies to be installed, you can
   npm run build & node dist/server.js
   ```
 
-7. API endpoints
+7. Testing
 
-   - All endpoints are described in the [REQUIREMENT.md](REQUIREMENTS.md) file.
-   - Token and Authentication
-     Tokens are passed along with the http header as
-
-     ```
-     Authorization   Bearer <token>
-     ```
-
-   [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/0c7d6ad8fef58e4ec8bf?action=collection%2Fimport)
-
-8. Testing
-
-   ```sh
-   npm run test
-   ```
+```sh
+npm run test
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+---
+
+### Ports & EndPoints
+
+#### Ports
+
+- Server runs on port `3000`
+- Database on port `5432`
+
+#### API endpoints
+
+- All endpoints are described in the [REQUIREMENT.md](REQUIREMENTS.md) file.
+- Token and Authentication
+  Tokens are passed along with the http header as
+
+  ```
+  Authorization   Bearer <token>
+  ```
+
+  [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/0c7d6ad8fef58e4ec8bf?action=collection%2Fimport)
 
 ---
 
