@@ -34,22 +34,22 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Product
 
-- id
-- name
-- price
-- [OPTIONAL] category
+- id [SERIAL PRIMARY KEY]
+- name [VARCHAR(50)]
+- price [NUMERIC]
+- [OPTIONAL] category [VARCHAR(50)]
 
 #### User
 
-- id
-- firstName
-- lastName
-- password
+- id [SERIAL PRIMARY KEY]
+- firstName [VARCHAR(50)]
+- lastName [VARCHAR(50)]
+- password [VARCHAR(60)]
 
 #### Orders
 
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or current or complete)
+- id [SERIAL PRIMARY KEY]
+- product_id [INTEGER]
+- quantity [INTEGER] (DEFAULT 1)
+- user_id [INTEGER]
+- status [VARCHAR(20)] (active or current or complete)

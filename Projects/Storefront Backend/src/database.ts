@@ -13,7 +13,7 @@ const {
   ENV,
 } = process.env;
 
-let client: any;
+let client;
 console.log(ENV);
 
 if (ENV === "dev") {
