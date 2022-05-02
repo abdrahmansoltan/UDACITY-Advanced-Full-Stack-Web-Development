@@ -12,13 +12,14 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Show: [/products/:id](http://localhost:3000/products/:id) [get]
 - ShowByCategory: [/products/category/:category](http://localhost:3000/products/category/:category) [get]
 - Create: [/products](http://localhost:3000/products) [post]
-- Delete: [/products](http://localhost:3000/products) [delete]
+- Delete: [/products/:id](http://localhost:3000/products/:id) [delete]
 
 #### Users
 
 - Index: [/users](http://localhost:3000/users) [get]
 - Show: [/users/:id](http://localhost:3000/users/:id) [get]
 - Create: [/users](http://localhost:3000/users) [post]
+- Delete: [/users](http://localhost:3000/users/:id) [delete]
 
 #### Orders
 
