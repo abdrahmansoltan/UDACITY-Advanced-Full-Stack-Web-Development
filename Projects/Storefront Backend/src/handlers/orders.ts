@@ -29,6 +29,7 @@ const create = async (req: Request, res: Response) => {
 const CompletedOrders = async (req: Request, res: Response) => {
   try {
     const Orders: OrderType[] = await orderStore.getCompletedOrders();
+    console.log(Orders);
     return res.json(Orders);
   } catch (err) {
     res.status(400);
@@ -69,14 +70,14 @@ const index = async (req: Request, res: Response) => {
   }
 };
 
-// each route use one model
+// each route use one model (ORDER IS IMPORTANT)
 const ordersRoutes = (app: express.Application) => {
   // using the middleware function to Validate the order's token to Authorize him to the next action
   app.post("/orders", verifyAuthToken, create);
-  app.get("/orders", verifyAuthToken, index);
-  app.get("/orders/:id", verifyAuthToken, show);
   app.get("/orders/current", verifyAuthToken, CurrentOrders);
   app.get("/orders/completed", verifyAuthToken, CompletedOrders);
+  app.get("/orders/:id", verifyAuthToken, show);
+  app.get("/orders", verifyAuthToken, index);
 };
 
 export default ordersRoutes; // to be used in the server file to have clean code
