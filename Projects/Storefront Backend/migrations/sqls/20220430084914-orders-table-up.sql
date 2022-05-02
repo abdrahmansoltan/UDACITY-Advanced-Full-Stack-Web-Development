@@ -1,6 +1,4 @@
 CREATE TABLE IF NOT EXISTS orders(
     id SERIAL PRIMARY KEY,
-    product_id INTEGER,
-    quantity INTEGER DEFAULT 1,
-    user_id INTEGER,
+    user_id INTEGER REFERENCES users(id),
     status VARCHAR(20) NOT NULL);

@@ -50,12 +50,25 @@ const create = async (req: Request, res: Response) => {
   }
 };
 
+// Delete user by ID
+const destroy = async (req: Request, res: Response) => {
+  try {
+    const id: number = parseInt(req.params.id);
+    await UserStore.deleteProduct(id);
+    return res.end(`deleted user`);
+  } catch (err) {
+    res.status(400);
+    res.json(err);
+  }
+};
+
 // each route use one model
 const usersRoutes = (app: express.Application) => {
   // using the middleware function to Validate the user's token to Authorize him to the next action
   app.get("/users", verifyAuthToken, index);
   app.get("/users/:id", verifyAuthToken, show);
   app.post("/users", create);
+  app.delete("/users/:id", destroy);
 };
 
 export default usersRoutes; // to be used in the server file to have clean code

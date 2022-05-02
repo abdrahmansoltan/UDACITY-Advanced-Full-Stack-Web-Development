@@ -5,6 +5,7 @@ import morgan from "morgan";
 import productsRoutes from "./handlers/Products";
 import usersRoutes from "./handlers/users";
 import ordersRoutes from "./handlers/orders";
+import orderProductRoutes from "./handlers/order_product";
 
 const app: express.Application = express(); // export for testing
 
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 productsRoutes(app);
 usersRoutes(app);
 ordersRoutes(app);
+orderProductRoutes(app);
 
 app.get("/", function (req: Request, res: Response) {
   res.send("Hello World!");
