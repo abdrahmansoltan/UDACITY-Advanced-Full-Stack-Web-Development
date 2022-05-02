@@ -18,19 +18,18 @@ describe("Order Model", () => {
   it("create method should add an order", async () => {
     const result: OrderType = await orderStore.create(orderExample);
     expect(result).toEqual({
-      id: 1,
+      id: 2,
       ...orderExample,
     });
   });
 
   it("index method should get all orders", async () => {
     const result: OrderType[] = await orderStore.index();
-    expect(result).toEqual([
-      {
-        id: 1,
-        ...orderExample,
-      },
-    ]);
+    expect(result.length).toBeGreaterThan(0);
+    expect(result[1]).toEqual({
+      id: 2,
+      ...orderExample,
+    });
   });
 
   it("getCurrentOrders method should get no orders yet", async () => {
@@ -39,10 +38,10 @@ describe("Order Model", () => {
   });
 
   it("show method should get orders based on order_id", async () => {
-    const result: OrderType[] = await orderStore.show(1);
+    const result: OrderType[] = await orderStore.show(2);
     expect(result).toEqual([
       {
-        id: 1,
+        id: 2,
         ...orderExample,
       },
     ]);

@@ -48,6 +48,7 @@ export class Order {
       const sql: string = "SELECT * FROM orders WHERE status LIKE 'curr%'";
       const result = await conn.query(sql);
       conn.release();
+      console.log('ROWS:',result.rows);
       return result.rows;
     } catch (err) {
       throw new Error(`Couldn't get the orders, ${err}`);

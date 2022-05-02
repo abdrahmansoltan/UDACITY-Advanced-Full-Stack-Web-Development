@@ -1,6 +1,6 @@
 import { PoolClient, QueryResult } from "pg";
 import client from "../database";
-const bcrypt = require('bcrypt')
+const bcrypt = require("bcrypt");
 
 export type UserType = {
   id?: number;
@@ -57,6 +57,19 @@ export class User {
       throw new Error(
         `Couldn't create user (${u.first_name} ${u.last_name}) ${err}`
       );
+    }
+  }
+
+  async deleteProduct(id: number): Promise<UserType> {
+    try {
+      const sql: string = `DELETE FROM users WHERE id=$1`;
+      const conn: PoolClient = await client.connect();
+      const result: QueryResult = await conn.query(sql, [id]);
+      conn.release();
+
+      return result.rows[0];
+    } catch (err) {
+      throw new Error(`Couldn't delete user ${id}, ${err}`);
     }
   }
 }
