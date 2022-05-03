@@ -3,8 +3,6 @@ import { Order, OrderType } from "../../models/order";
 const orderStore = new Order();
 
 const orderExample: OrderType = {
-  product_id: 1,
-  quantity: 4,
   user_id: 1,
   status: "completed",
 };

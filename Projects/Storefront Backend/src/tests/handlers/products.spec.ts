@@ -36,6 +36,7 @@ describe("Products Endpoints", () => {
       .send(productExample)
       .set("Authorization", `Bearer ${token}`);
 
+    console.log(newProduct.body);
     expect(newProduct.status).toBe(200);
     expect(newProduct.body).toEqual({
       id: 1,

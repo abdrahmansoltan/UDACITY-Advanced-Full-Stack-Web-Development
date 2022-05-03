@@ -9,7 +9,7 @@
     "tsc": "tsc",
     "clean": "rm -rf dist",
     "build": "npx tsc",
-    "test": "set ENV=test&& npm run clean && db-migrate --env test up && npm run build && jasmine & db-migrate --env test down --count 3"
+    "test": "set ENV=test&& npm run clean && db-migrate --env test up && npm run build && jasmine & db-migrate --env test down --count 4"
   },
   "author": "Abdelrahman Soltan",
   "license": "ISC",

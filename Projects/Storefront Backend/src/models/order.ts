@@ -3,8 +3,6 @@ import client from "../database";
 
 export type OrderType = {
   id?: number;
-  product_id: number;
-  quantity?: number;
   user_id: number;
   status: string;
 };
@@ -12,16 +10,11 @@ export type OrderType = {
 export class Order {
   async create(order: OrderType): Promise<OrderType> {
     try {
-      const { product_id, quantity, user_id, status } = order;
+      const { user_id, status } = order;
 
       const conn = await client.connect();
-      const sql = `INSERT INTO orders (product_id, quantity, user_id, status) VALUES($1, $2, $3, $4) RETURNING *`;
-      const result = await conn.query(sql, [
-        product_id,
-        quantity,
-        user_id,
-        status,
-      ]);
+      const sql = `INSERT INTO orders (user_id, status) VALUES($1, $2) RETURNING *`;
+      const result = await conn.query(sql, [user_id, status]);
       conn.release();
       return result.rows[0];
     } catch (err) {
@@ -48,7 +41,7 @@ export class Order {
       const sql: string = "SELECT * FROM orders WHERE status LIKE 'curr%'";
       const result = await conn.query(sql);
       conn.release();
-      console.log('ROWS:',result.rows);
+      console.log("ROWS:", result.rows);
       return result.rows;
     } catch (err) {
       throw new Error(`Couldn't get the orders, ${err}`);

@@ -11,8 +11,6 @@ const create = async (req: Request, res: Response) => {
   try {
     // get user data from the request
     const order: OrderType = {
-      product_id: req.body.product_id,
-      quantity: req.body.quantity,
       user_id: req.body.user_id,
       status: req.body.status,
     };

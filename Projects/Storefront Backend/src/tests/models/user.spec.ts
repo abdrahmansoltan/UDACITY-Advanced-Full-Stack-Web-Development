@@ -4,7 +4,7 @@ const UserStore = new User();
 
 describe("User Model", () => {
   afterAll(async () => {
-    await UserStore.deleteProduct(1);
+    await UserStore.deleteProduct(4);
   });
 
   it("should have a show method", () => {

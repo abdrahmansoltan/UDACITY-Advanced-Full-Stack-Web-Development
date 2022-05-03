@@ -10,8 +10,6 @@ describe("Orders Endpoints", () => {
   let token: string = "";
 
   const orderExample: OrderType = {
-    product_id: 1,
-    quantity: 4,
     user_id: 1,
     status: "completed",
   };
