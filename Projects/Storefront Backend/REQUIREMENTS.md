@@ -50,7 +50,12 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### Orders
 
 - id [SERIAL PRIMARY KEY]
-- product_id [INTEGER]
-- quantity [INTEGER] (DEFAULT 1)
 - user_id [INTEGER]
 - status [VARCHAR(20)] (active or current or complete)
+
+#### Order_Product
+
+- id [SERIAL PRIMARY KEY]
+- quantity [INTEGER]
+- user_id [INTEGER] REFERENCES orders(id)
+- product_id [INTEGER] REFERENCES products(id)
