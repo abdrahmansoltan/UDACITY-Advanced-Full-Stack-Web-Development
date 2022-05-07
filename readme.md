@@ -4,9 +4,9 @@ This repository contains projects, Exercises and notes for Udacity's Advanced-Fu
 
 This Nanodegree contains 3 sections:
 
-1. Backend Development with Node.js
-2. Creating an API with PostgreSQL and Express
-3. Deployment Process
+  - [Backend Development with Node.js](#backend-development-with-nodejs)
+  - [Creating an API with PostgreSQL and Express](#creating-an-api-with-postgresql-and-express)
+  - [Deployment Process](#deployment-process)
 
 ---
 
